@@ -37,6 +37,36 @@ void insertAtCustom(int pos,int value){
     n++;
     printf("Element Inserted !!!\n");
     }
+void DeleteFromBeg(){
+      if(n==0){
+        printf("List is empty !!!!\n");
+        return;
+      }
+      for(int i=0;i<n;i++){
+        list[i]=list[i+1];
+      }
+      n--;
+      printf("Element is deleted!!!!!\n");
+    }
+void DeleteFromEnd(){
+  if(n==0){
+        printf("List is empty !!!!\n");
+        return;
+  }
+  n--;
+        printf("Deleted !!!\n");
+}
+void DeleteFromPos(int pos){
+  if(pos<0||pos >= n){
+        printf("Invalid position !!\n");
+        return;
+    }
+     for(int i=pos;i<n;i++){
+        list[i]=list[i+1];
+      }
+      n--;
+      printf("Element is deleted!!!!!\n");
+    }
 void displaylist(){
     if(n==0){
         printf("list is empty!!!\n");
@@ -47,6 +77,22 @@ void displaylist(){
     }
     printf("\n");
 }
+int search(int value){
+    for(int i=0;i<n;i++){
+      if(list[i]==value)
+      return i;
+    }
+    return -1;
+}
+void updatelist(int pos,int value){
+  if(pos<0||pos >= n){
+        printf("Invalid position !!\n");
+        return;
+    }
+    list[pos]=value;
+    printf("List Updated !!!!\n");
+}
+// void bubblesort()
 int main(){
     while(1){
         printf("1. Insert In Beginning\n");
@@ -82,21 +128,41 @@ int main(){
             insertAtCustom(pos,data);
             break;
             case 4:
+            DeleteFromBeg();
             break;
             case 5:
+            DeleteFromEnd();
             break;
             case 6:
+            printf("Enter pos: ");
+            scanf("%d",&pos);
+            DeleteFromPos(pos);
             break;
             case 7:
             displaylist();
             break;
             case 8:
+            printf("Enter searching element: ");
+            scanf("%d",&data);
+            int index = search(data);
+            if(data!=-1){
+              printf("Element found at Index %d\n",&index);
+            }
+            else printf("ELEMENT NOT FOUND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
             break;
             case 9:
+            printf("Enter data: ");
+            scanf("%d",&data);
+            printf("Enter pos: ");
+            scanf("%d",&pos);
+            updatelist(pos,data);
             break;
             case 10:
             break;
             case 11:
+            exit(0);
+            default:
+            printf("INvalid choice!\n");
             break;
         }
     }
